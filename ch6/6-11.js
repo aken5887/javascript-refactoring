@@ -1,16 +1,30 @@
+/*
+  6.11 단계 쪼개기
+*/
 export function priceOrder(product, quantity, shippingMethod) {
+  // 기본 제품 가격
   const basePrice = product.basePrice * quantity;
-  const discount =
-    Math.max(quantity - product.discountThreshold, 0) *
-    product.basePrice *
-    product.discountRate;
+  // 할인 가격
+  const discount = calculateDiscount(quantity, product);
+  // 배송비
+  const shippingCost = calculateShippingCost(quantity, basePrice, shippingMethod);
+  // 총 가격
+  return basePrice - discount + shippingCost;
+}
+
+function calculateDiscount(quantity, product){
+  return Math.max(quantity - product.discountThreshold, 0) *
+  product.basePrice *
+  product.discountRate;
+}
+
+function calculateShippingCost(quantity, basePrice, shippingMethod){
+  // 개별 배송비 
   const shippingPerCase =
-    basePrice > shippingMethod.discountThreshold
-      ? shippingMethod.discountedFee
-      : shippingMethod.feePerCase;
-  const shippingCost = quantity * shippingPerCase;
-  const price = basePrice - discount + shippingCost;
-  return price;
+              basePrice > shippingMethod.discountThreshold
+                ? shippingMethod.discountedFee
+                : shippingMethod.feePerCase;
+  return quantity * shippingPerCase;
 }
 
 // 사용 예:
