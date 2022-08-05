@@ -1,30 +1,53 @@
-/**
- * 7.6 캡슐화 - 클래스 인라인하기
- */
-export class Shipment {
+export class TrackingInformation {
   #shippingCompany;
   #trackingNumber;
-
   constructor(trackingNumber, shippingCompany) {
     this.#trackingNumber = trackingNumber;
     this.#shippingCompany = shippingCompany;
   }
 
-  get trackingInfo() {
-    return `${this.#shippingCompany}: ${this.#trackingNumber}`;
-  }
-
-  get shippingCompany(){
+  get shippingCompany() {
     return this.#shippingCompany;
   }
 
-  set shippingCompany(value){
-    this.#shippingCompany = value;
+  set shippingCompany(arg) {
+    this.#shippingCompany = arg;
+  }
+
+  get trackingNumber() {
+    return this.#trackingNumber;
+  }
+
+  set trackingNumber(arg) {
+    this.#trackingNumber = arg;
+  }
+
+  get display() {
+    return `${this.shippingCompany}: ${this.trackingNumber}`;
   }
 }
 
-const shipment = new Shipment(999, 'Maersk');
+export class Shipment {
+  #trackingInformation;
+  constructor(trackingInformation) {
+    this.#trackingInformation = trackingInformation;
+  }
+
+  get trackingInfo() {
+    return this.#trackingInformation.display;
+  }
+
+  get trackingInformation() {
+    return this.#trackingInformation;
+  }
+
+  set trackingInformation(trackingInformation) {
+    this.#trackingInformation = trackingInformation;
+  }
+}
+
+const shipment = new Shipment(new TrackingInformation(999, 'Maersk'));
 console.log(shipment.trackingInfo);
 
-shipment.shippingCompany = 'COSCO';
+shipment.trackingInformation.shippingCompany = 'COSCO';
 console.log(shipment.trackingInfo);

@@ -1,6 +1,3 @@
-/**
- *  함수 선언 바꾸기
- */
-export function circumference(radius) {
+export function circum(radius) {
   return 2 * Math.PI * radius;
 }

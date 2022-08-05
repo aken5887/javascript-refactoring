@@ -1,22 +1,20 @@
 // 예제 1
 export function rating(driver) {
-  return driver.numberOfLateDeliveries > 5 ? 2 : 1;
+  return moreThanFiveLateDeliveries(driver) ? 2 : 1;
 }
 
-// function moreThanFiveLateDeliveries(dvr) {
-//   return dvr.numberOfLateDeliveries > 5;
-// }  rating 함수로 인라인
+function moreThanFiveLateDeliveries(dvr) {
+  return dvr.numberOfLateDeliveries > 5;
+}
 
-// 예제 2 - 불필요한 간접호출
+// 예제 2
 function reportLines(customer) {
-  const result = [];
-  // gatherCustomerData(lines, customer);
-  result.push(['name', customer.name]);
-  result.push(['location', customer.location]);
-  return result;
+  const lines = [];
+  gatherCustomerData(lines, customer);
+  return lines;
 }
 
-// function gatherCustomerData(out, customer) {
-//   out.push(['name', customer.name]);
-//   out.push(['location', customer.location]);
-// }  reportLines 함수로 인라인
+function gatherCustomerData(out, customer) {
+  out.push(['name', customer.name]);
+  out.push(['location', customer.location]);
+}

@@ -1,15 +1,11 @@
-const { times } = import("lodash");
-/**
- * 7.5 캡슐화 - 클래스 추출하기
- * 클래스 하나당 하나의 도메인, 하나의 책임, 하나의 역할
- */
 class Person {
   #name;
-  #telephoneNumber;
-
+  #officeAreaCode;
+  #officeNumber;
   constructor(name, areaCode, number) {
     this.#name = name;
-    this.#telephoneNumber = new TelePhoneNumber(areaCode, number);
+    this.#officeAreaCode = areaCode;
+    this.#officeNumber = number;
   }
 
   get name() {
@@ -21,60 +17,28 @@ class Person {
   }
 
   get telephoneNumber() {
-    return this.#telephoneNumber.toString;
+    return `(${this.officeAreaCode}) ${this.officeNumber}`;
   }
 
-  get areaCode() {
-    return this.#telephoneNumber.areaCode;
+  get officeAreaCode() {
+    return this.#officeAreaCode;
   }
 
-  get number() {
-    return this.#telephoneNumber.number;
+  set officeAreaCode(arg) {
+    this.#officeAreaCode = arg;
   }
 
-  set areaCode(arg) {
-    this.#telephoneNumber.areaCode = arg;
+  get officeNumber() {
+    return this.#officeNumber;
   }
 
-  set number(arg) {
-    this.#telephoneNumber.number = arg;
+  set officeNumber(arg) {
+    this.#officeNumber = arg;
   }
- 
-}
-
-class TelePhoneNumber{
-  #areaCode;
-  #number;
-
-  constructor(areaCode, number){
-    this.#areaCode = areaCode;
-    this.#number = number;
-  }
-
-  get areaCode(){
-    return this.#areaCode;
-  }
-
-  get number(){
-    return this.#number;
-  }
-
-  set areaCode(value){
-    this.#areaCode = value;
-  }
-
-  set number(value){
-    this.#number = value;
-  }
-
-  get toString(){
-    return `(${this.#areaCode}) ${this.#number}`;
-  }
-
 }
 
 const person = new Person('엘리', '010', '12345678');
 console.log(person.name);
-console.log(person.areaCode);
-console.log(person.number);
+console.log(person.officeAreaCode);
+console.log(person.officeNumber);
 console.log(person.telephoneNumber);

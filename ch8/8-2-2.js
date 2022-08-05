@@ -1,23 +1,17 @@
-/**
- * 8.2 필드 옮기기
- */
 class Account {
-  constructor(number, type) {
+  constructor(number, type, interestRate) {
     this._number = number;
     this._type = type;
+    this._interestRate = interestRate;
   }
 
-  get interestRate(){
-    return this._type.interestRate;
+  get interestRate() {
+    return this._interestRate;
   }
 }
 
 class AccountType {
-  constructor(nameStrin, interestRate) {
+  constructor(nameString) {
     this._name = nameString;
-    this._interestRate = interestRate;
-  }
-  get interestRate() {
-    return this._interestRate;
   }
 }

@@ -1,7 +1,3 @@
-/**
- * 7-7 캡슐화 - 위임 숨기기
- * 7-8 캡슐화 - 중계자 제거하기
- */
 class Person {
   #name;
   #department;
@@ -20,14 +16,6 @@ class Person {
 
   set department(arg) {
     this.#department = arg;
-  }
-  
-  get manager(){
-    return this.#department.manager;
-  }
-
-  get chargeCode(){
-    return this.#department.chargeCode;
   }
 }
 
@@ -58,5 +46,5 @@ export class Department {
 
 const person = new Person('Tom', new Department('aManager', '999'));
 console.log(person.name);
-console.log(person.manager);
-console.log(person.chargeCode);
+console.log(person.department.manager);
+console.log(person.department.chargeCode);
